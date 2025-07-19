@@ -1,0 +1,11 @@
+{
+  "port": 3000,
+  "dbPath": "./db/events.sqlite",
+  "logPath": "./logs/events.log"  3"
+}
+{
+  "authToken": "secret123"
+}
+
+"telegramBotToken": "YOUR_BOT_TOKEN",
+"telegramChatId": "YOUR_CHAT_ID"

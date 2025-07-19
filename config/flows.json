@@ -1,0 +1,12 @@
+[
+  {
+    "cid": "vpn-poland",
+    "name": "VPN Poland",
+    "params": { "geo": "PL", "source": "push" }
+  },
+  {
+    "cid": "wifi-sec",
+    "name": "WiFi Security",
+    "params": { "geo": "UA", "source": "inpage" }
+  }
+]

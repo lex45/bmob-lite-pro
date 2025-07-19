@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><body>
+  <h2>⚙️ Редагувати потоки</h2>
+  <% flows.forEach((f, i) => { %>
+    <form method="POST" action="/flows/edit/<%= f.cid %>">
+      <label>CID: <b><%= f.cid %></b></label><br>
+      Назва: <input name="name" value="<%= f.name %>" /><br>
+      GEO: <input name="geo" value="<%= f.params.geo %>" />
+      Source: <input name="source" value="<%= f.params.source %>" /><br>
+      <button type="submit">💾 Зберегти</button><hr>
+    </form>
+  <% }) %>
+</body></html>

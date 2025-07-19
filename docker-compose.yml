@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  bmob:
+    build: .
+    container_name: bmob-tracker
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./db:/app/db
+      - ./logs:/app/logs
+      - ./config:/app/config
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}

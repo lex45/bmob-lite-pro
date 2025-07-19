@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><body>
+  <h2>📊 Статистика по SUBID</h2>
+  <table border="1"><tr><th>SUBID</th><th>Clicks</th><th>Postbacks</th></tr>
+  <% for (let sub in stats) { %>
+    <tr>
+      <td><%= sub %></td>
+      <td><%= stats[sub].click || 0 %></td>
+      <td><%= stats[sub].postback || 0 %></td>
+    </tr>
+  <% } %>
+  </table>
+</body></html>

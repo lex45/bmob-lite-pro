@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>🔎 Пошук по SUBID</h2>
+    <form method="get">
+      <input name="subid" value="<%= subid %>" placeholder="UA123..." />
+      <button>Пошук</button>
+    </form>
+
+    <% if (rows.length > 0) { %>
+    <table border="1">
+      <tr><th>ID</th><th>CID</th><th>Type</th><th>Status</th><th>Time</th></tr>
+      <% rows.forEach(r => { %>
+        <tr>
+          <td><%= r.id %></td>
+          <td><%= r.cid %></td>
+          <td><%= r.type %></td>
+          <td><%= r.status %></td>
+          <td><%= r.timestamp %></td>
+        </tr>
+      <% }) %>
+    </table>
+    <% } %>
+  </body>
+</html>
