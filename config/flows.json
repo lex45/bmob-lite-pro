@@ -2,11 +2,144 @@
   {
     "cid": "vpn-poland",
     "name": "VPN Poland",
-    "params": { "geo": "PL", "source": "push" }
+    "params": {
+      "geo": "PL",
+      "source": "push"
+    },
+    "stats": {
+      "click": 0,
+      "postback": 0
+    }
   },
   {
-    "cid": "wifi-sec",
-    "name": "WiFi Security",
-    "params": { "geo": "UA", "source": "inpage" }
+    "cid": [
+      "vpn-poland",
+      "vpn-poland"
+    ],
+    "name": "VPN Polandtt",
+    "params": {
+      "geo": "PL",
+      "source": ""
+    },
+    "stats": {
+      "click": 0,
+      "postback": 0
+    }
+  },
+  {
+    "cid": [
+      "vpn-poland",
+      "vpn-poland,vpn-poland"
+    ],
+    "name": [
+      "VPN Poland",
+      "VPN Polandtt"
+    ],
+    "params": {
+      "geo": [
+        "PL",
+        "PL"
+      ],
+      "source": [
+        "Ghh",
+        ""
+      ]
+    },
+    "stats": {
+      "click": 0,
+      "postback": 0
+    }
+  },
+  {
+    "cid": [
+      "vpn-poland",
+      "vpn-poland,vpn-poland",
+      "vpn-poland,vpn-poland,vpn-poland"
+    ],
+    "name": [
+      "VPN Poland",
+      "VPN Polandtt",
+      "VPN Poland,VPN Polandtt"
+    ],
+    "params": {
+      "geo": [
+        "PL",
+        "PL",
+        "PL,PL"
+      ],
+      "source": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "stats": {
+      "click": 0,
+      "postback": 0
+    }
+  },
+  {
+    "cid": [
+      "vpn-poland",
+      "vpn-poland,vpn-poland",
+      "vpn-poland,vpn-poland,vpn-poland",
+      "vpn-poland,vpn-poland,vpn-poland,vpn-poland,vpn-poland,vpn-poland"
+    ],
+    "name": [
+      "VPN Poland",
+      "VPN Polandtt",
+      "VPN Poland,VPN Polandtt",
+      "VPN Poland,VPN Polandtt,VPN Poland,VPN Polandtt"
+    ],
+    "params": {
+      "geo": [
+        "PL",
+        "PL",
+        "PL,PL",
+        "PL,PL,PL,PL"
+      ],
+      "source": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "stats": {
+      "click": 0,
+      "postback": 0
+    }
+  },
+  {
+    "cid": [
+      "vpn-poland",
+      "vpn-poland,vpn-poland",
+      "vpn-poland,vpn-poland,vpn-poland",
+      "vpn-poland,vpn-poland,vpn-poland,vpn-poland,vpn-poland,vpn-poland"
+    ],
+    "name": [
+      "VPN Poland",
+      "VPN Polandtt",
+      "VPN Poland,VPN Polandtt",
+      "VPN Poland,VPN Polandtt,VPN Poland,VPN Polandtt"
+    ],
+    "params": {
+      "geo": [
+        "PL",
+        "PL",
+        "PL,PL",
+        "PL,PL,PL,PL"
+      ],
+      "source": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "stats": {
+      "click": 0,
+      "postback": 0
+    }
   }
 ]

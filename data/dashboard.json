@@ -1,0 +1,10 @@
+[
+  {
+    "id": 123,
+    "name": "VPN Poland",
+    "geos": {
+      "PL": { "visits": 112, "conversions": 16, "revenue": 104 },
+      "SK": { "visits": 89, "conversions": 11, "revenue": 75 }
+    }
+  }
+]

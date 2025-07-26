@@ -1,0 +1,17 @@
+<h2>📡 Джерела трафіку</h2>
+
+<% sources.forEach(s => { %>
+  <div style="margin-bottom: 10px; border: 1px solid #ccc; padding: 8px;">
+    <strong><%= s.name %></strong><br>
+    ID: <%= s.id %><br>
+    Платформа: <%= s.platform %>
+  </div>
+<% }) %>
+
+<h3>➕ Додати джерело</h3>
+<form method="POST" action="/sources/add">
+  <input type="text" name="id" placeholder="src03" required>
+  <input type="text" name="name" placeholder="TikTok Ads" required>
+  <input type="text" name="platform" placeholder="TikTok" required>
+  <button type="submit">💾 Додати</button>
+</form>

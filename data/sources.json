@@ -1,0 +1,17 @@
+[
+  {
+    "id": "src01",
+    "name": "Telegram канал",
+    "platform": "Telegram"
+  },
+  {
+    "id": "src02",
+    "name": "Facebook Ads",
+    "platform": "Facebook"
+  },
+  {
+    "id": "1",
+    "name": "2",
+    "platform": "3"
+  }
+]

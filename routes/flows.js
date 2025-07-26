@@ -1,22 +1,22 @@
-const express = require('express');
-const db = require('../db/db');
-const router = express.Router();
-const flows = require('../config/flows.json');
+module.exports = function() {
+  const express = require('express');
+  const router = express.Router();
+  const path = require('path');
+  const fs = require('fs');
 
-router.get('/', (req, res) => {
-  db.all(`SELECT cid, type, COUNT(*) as count FROM events GROUP BY cid, type`, [], (err, rows) => {
-    const stats = {};
-    rows.forEach(r => {
-      if (!stats[r.cid]) stats[r.cid] = {};
-      stats[r.cid][r.type] = r.count;
-    });
+  router.get('/', (req, res) => {
+    const flowsPath = path.join(__dirname, '..', 'config', 'flows.json');
+    let flows = [];
 
-    flows.forEach(f => {
-      f.stats = stats[f.cid] || {};
-    });
+    try {
+      const raw = fs.readFileSync(flowsPath);
+      flows = JSON.parse(raw);
+    } catch (err) {
+      return res.status(500).send('Failed to load flows.json');
+    }
 
     res.render('flows', { flows });
   });
-});
 
-module.exports = router;
+  return router;
+};

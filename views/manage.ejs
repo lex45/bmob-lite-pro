@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Редагування кампаній</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  table { width: 100%; border-collapse: collapse; }
+  td { display: block; margin: 5px 0; }
+  input, button { width: 100%; font-size: 16px; padding: 8px; }
+</style>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    th { background: #eee; }
+    input[type="text"] { width: 100%; padding: 5px; }
+    button { padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  <h2>📋 Кампанії</h2>
+  <button onclick="updateStats()">🔄 Оновити</button>
+<div id="status"></div>
+
+  <form method="POST" action="/flows/edit">
+   <table>
+  <tbody>
+    <% flows.forEach(f => { %>
+      <tr>
+        <td><input type="text" name="cid" value="<%= f.cid %>" readonly></td>
+        <td><input type="text" name="name" value="<%= f.name || '' %>" class="input-name"></td>
+        <td><input type="text" name="geo" value="<%= f.params?.geo || '' %>" class="input-geo"></td>
+        <td><input type="text" name="source" value="<%= f.source || '' %>" class="input-source"></td>
+        <td>
+          <button onclick="saveCampaign('<%= f.cid %>', this)">💾 Зберегти</button>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+  </form>
+  
+
+
+<script>
+function saveCampaign(cid, btn) {
+  const row = btn.closest('tr');
+
+  const name = row.querySelector('.input-name')?.value || '';
+  const geo = row.querySelector('.input-geo')?.value || '';
+  const source = row.querySelector('.input-source')?.value || '';
+  
+  fetch('/flows/update', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      cid,
+      name,
+      geo,
+      source
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === 'saved') {
+      btn.innerText = '✅ Збережено';
+      setTimeout(() => { btn.innerText = '💾 Зберегти'; }, 1500);
+    } else {
+      btn.innerText = '⚠️ Помилка';
+    }
+  })
+  .catch(err => {
+    console.error('❌ AJAX помилка:', err);
+    btn.innerText = '💥 FAIL';
+  });
+}
+</script>
+</body>
+</html>

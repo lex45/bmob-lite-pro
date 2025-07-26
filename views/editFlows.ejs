@@ -8,5 +8,24 @@
       Source: <input name="source" value="<%= f.params.source %>" /><br>
       <button type="submit">💾 Зберегти</button><hr>
     </form>
+    <h3>➕ Додати кампанію</h3>
+<form method="POST" action="/flows/add">
+  <table>
+    <tr>
+      <th>CID</th>
+      <th>Name</th>
+      <th>Geo</th>
+      <th>Source</th>
+      <th>💾 Add</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="cid"></td>
+      <td><input type="text" name="name"></td>
+      <td><input type="text" name="geo"></td>
+      <td><input type="text" name="source"></td>
+      <td><button type="submit">➕ Add</button></td>
+    </tr>
+  </table>
+</form>
   <% }) %>
 </body></html>

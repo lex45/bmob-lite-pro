@@ -1,0 +1,34 @@
+<h2>📦 Створити кампанію</h2>
+<form method="POST" action="/campaigns/save">
+  <label>📌 CID</label>
+  <input type="text" name="cid" required>
+
+  <label>🔤 Назва</label>
+  <input type="text" name="name" required>
+
+  <label>🎯 GEO</label>
+  <input type="text" name="geo">
+
+  <label>🎁 Офер</label>
+  <select name="offer_id" required>
+    <% offers.forEach(o => { %>
+      <option value="<%= o.id %>"><%= o.name %> — $<%= o.payout %></option>
+    <% }) %>
+  </select>
+
+  <label>📡 Джерело трафіку</label>
+  <select name="source_id" required>
+    <% sources.forEach(s => { %>
+      <option value="<%= s.id %>"><%= s.name %> — <%= s.platform %></option>
+    <% }) %>
+  </select>
+
+  <label>🤝 Партнерка</label>
+  <select name="partner_id" required>
+    <% partners.forEach(p => { %>
+      <option value="<%= p.id %>"><%= p.name %> — <%= p.type %></option>
+    <% }) %>
+  </select>
+
+  <button type="submit">💾 Створити</button>
+</form>

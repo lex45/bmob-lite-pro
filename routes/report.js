@@ -1,15 +1,35 @@
-const express = require('express');
-const db = require('../db/db');
-const router = express.Router();
+module.exports = function(db) {
+  const express = require('express');
+  const router = express.Router();
 
-router.get('/', (req, res) => {
-  const { subid } = req.query;
-  if (!subid) return res.status(400).send('Missing subid');
+  router.get('/', (req, res) => {
+    const { cid, subid, type } = req.query;
 
-  db.all(`SELECT type, status, timestamp FROM events WHERE subid = ?`, [subid], (err, rows) => {
-    if (err) return res.status(500).send('DB error');
-    res.json(rows);
+    let query = 'SELECT * FROM events WHERE 1=1';
+    const params = [];
+
+    if (cid) {
+      query += ' AND cid = ?';
+      params.push(cid);
+    }
+
+    if (subid) {
+      query += ' AND subid = ?';
+      params.push(subid);
+    }
+
+    if (type) {
+      query += ' AND type = ?';
+      params.push(type);
+    }
+
+    query += ' ORDER BY timestamp DESC LIMIT 100';
+
+    db.all(query, params, (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows);
+    });
   });
-});
 
-module.exports = router;
+  return router;
+};

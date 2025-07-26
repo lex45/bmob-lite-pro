@@ -1,0 +1,17 @@
+<h2>🤝 Партнерки</h2>
+
+<% partners.forEach(p => { %>
+  <div style="margin-bottom: 10px; border: 1px solid #ccc; padding: 8px;">
+    <strong><%= p.name %></strong><br>
+    ID: <%= p.id %><br>
+    Тип: <%= p.type %>
+  </div>
+<% }) %>
+
+<h3>➕ Додати партнерку</h3>
+<form method="POST" action="/partners/add">
+  <input type="text" name="id" placeholder="prt03" required>
+  <input type="text" name="name" placeholder="TrafficFactory" required>
+  <input type="text" name="type" placeholder="Broker / RTB" required>
+  <button type="submit">💾 Додати</button>
+</form>

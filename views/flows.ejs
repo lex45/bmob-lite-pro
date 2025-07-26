@@ -6,10 +6,10 @@
     <tr>
       <td><%= f.cid %></td>
       <td><%= f.name %></td>
-      <td><%= f.stats.click || 0 %></td>
-      <td><%= f.stats.postback || 0 %></td>
-      <td><%= f.params.geo %></td>
-      <td><%= f.params.source %></td>
+      <td><%= f.stats?.click || 0 %></td>
+      <td><%= f.stats?.postback || 0 %></td>
+      <td><%= f.params?.geo %></td>
+      <td><%= f.params?.source %></td>
     </tr>
     <% }) %>
   </table>

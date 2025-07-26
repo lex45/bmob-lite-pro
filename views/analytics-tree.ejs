@@ -1,0 +1,17 @@
+<h2>📊 Сегментація візитів</h2>
+
+<% for (let src in grouped) { %>
+  <details open><summary>📡 <%= src %></summary>
+    <% for (let day in grouped[src]) { %>
+      <details><summary>📅 <%= day %></summary>
+        <% for (let ref in grouped[src][day]) { %>
+          <details><summary>🌐 <%= ref %></summary>
+            <% for (let dev in grouped[src][day][ref]) { %>
+              🖥 <%= dev %>: <%= grouped[src][day][ref][dev].visits %> візитів<br>
+            <% } %>
+          </details>
+        <% } %>
+      </details>
+    <% } %>
+  </details>
+<% } %>

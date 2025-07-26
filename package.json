@@ -1,0 +1,29 @@
+{
+  "name": "bmob-lite-pro",
+  "version": "1.0.0",
+  "main": "core/server.js",
+  "scripts": {
+    "start": "node core/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "morgan": "^1.10.1",
+    "node-telegram-bot-api": "^0.66.0",
+    "sqlite3": "^5.1.6"
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lex45/bmob-lite-pro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lex45/bmob-lite-pro/issues"
+  },
+  "homepage": "https://github.com/lex45/bmob-lite-pro#readme"
+}

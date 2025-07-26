@@ -1,24 +1,32 @@
-const express = require('express');
-const saveEvent = require('../utils/saveEvent');
-const validate = require('../utils/validateParams');
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  const { cid, subid, status } = req.query;
-  if (!validate(req.query, ['cid', 'subid'])) return res.status(400).send('Missing params');
-
-  let mappedStatus = status;
-  if (status === '1') mappedStatus = 'lead';
-  else if (status === '2') mappedStatus = 'approved';
-  else if (!status) mappedStatus = 'pending';
-
-  saveEvent({ type: 'postback', cid, subid, status: mappedStatus });
+module.exports = function(db) {
+  const express = require('express');
+  const router = express.Router();
+  const fs = require('fs');
+  const settings = require('../config/settings.json');
   
-  const notify = require('../utils/notifyTelegram');
-// після saveEvent(...)
-notify({ cid, subid, status: mappedStatus });
-  
-  res.send(`OK: ${mappedStatus}`);
-});
+const telegram = require('../utils/telegram');
 
-module.exports = router;
+  router.post('/', (req, res) => {
+    const { cid, subid } = req.body;
+    if (!cid || !subid) return res.status(400).json({ error: 'Missing cid or subid' });
+
+    db.run(
+      'INSERT INTO events (cid, subid, source, type, timestamp) VALUES (?, ?, ?, ?, ?)',
+      [cid, subid, 'api', 'postback', Date.now()],
+      err => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        fs.appendFile(
+          settings.logPath,
+          `POSTBACK ${cid} ${subid} ${Date.now()}\n`,
+          () => {}
+        );
+telegram.sendMessage(`📦 POSTBACK\nCID: ${cid}\nSUBID: ${subid}`);
+
+        res.json({ status: 'postback recorded' });
+      }
+    );
+  });
+
+  return router;
+};

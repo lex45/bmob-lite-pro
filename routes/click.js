@@ -1,15 +1,29 @@
-const express = require('express');
-const saveEvent = require('../utils/saveEvent');
-const validate = require('../utils/validateParams');
-const router = express.Router();
+module.exports = function(db) {
+  const express = require('express');
+  const router = express.Router();
+  const fs = require('fs');
+  const settings = require('../config/settings.json');
 
-router.get('/', (req, res) => {
-  const { cid, subid } = req.query;
-  if (!validate(req.query, ['cid', 'subid']))
-    return res.status(400).send('Missing params');
+  router.get('/', (req, res) => {
+    const { cid, subid } = req.query;
+    if (!cid || !subid) return res.status(400).json({ error: 'Missing cid or subid' });
 
-  saveEvent({ type: 'click', cid, subid });
-  res.sendFile('pixel.html', { root: './templates' });
-});
+    db.run(
+      'INSERT INTO events (cid, subid, source, type, timestamp) VALUES (?, ?, ?, ?, ?)',
+      [cid, subid, 'api', 'click', Date.now()],
+      err => {
+        if (err) return res.status(500).json({ error: err.message });
 
-module.exports = router;
+        fs.appendFile(
+          settings.logPath,
+          `CLICK ${cid} ${subid} ${Date.now()}\n`,
+          () => {}
+        );
+
+        res.json({ status: 'click recorded' });
+      }
+    );
+  });
+
+  return router;
+};
